@@ -1,37 +1,22 @@
 from datetime import datetime
 import time
-import os
-import sys
-import traceback
 
-import bme680
-
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import ST7789 as ST7789
 
+from outside import Outside
+from inside import Inside
+
 def main():
+    print('Initializing.')
 
-    try:
-        sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
-    except Exception as e:
-        # print(e)
-        traceback.print_exc(file=sys.stdout)
-        print('Could not configure the sensor. Exiting...')
-        exit(1)
 
-    print("""
-    image.py - Display an image on the LCD.
-    If you're using Breakout Garden, plug the 1.3" LCD (SPI)
-    breakout into the front slot.
-    """)
+    print('Initializing data sources')
+    inside = Inside()
+    outside = Outside()
 
-    if len(sys.argv) < 2:
-        print("Usage: {} <image_file>".format(sys.argv[0]))
-        sys.exit(1)
 
-    image_file = sys.argv[1]
-
-    # Create ST7789 LCD display class.
+    print('Initializing the display')
     disp = ST7789.ST7789(
         port=0,
         cs=ST7789.BG_SPI_CS_FRONT,  # BG_SPI_CS_BACK or BG_SPI_CS_FRONT
@@ -39,26 +24,54 @@ def main():
         backlight=19,               # 18 for back BG slot, 19 for front BG slot.
         spi_speed_hz=80 * 1000 * 1000
     )
-
     WIDTH = disp.width
     HEIGHT = disp.height
-
-    # Initialize display.
     disp.begin()
 
-    # Load an image.
-    print('Loading image: {}...'.format(image_file))
+
+    print('Loading background image')
+    image_file = 'background/bg.png'
     image = Image.open(image_file)
 
-    # Resize the image
-    image = image.resize((WIDTH, HEIGHT))
 
-    # Draw the image on the display hardware.
-    print('Drawing image')
-
-    disp.display(image)
+    print('Initialize drawing component')
+    draw = ImageDraw.Draw(image)
+    # TODO: can maybe get a custom better looking font
+    font = ImageFont.load_default()
 
 
+    print('Starting main loop.')
+    index = 0
+    while True:
+        print('Reset the image')
+        image = Image.open(image_file)
+        draw = ImageDraw.Draw(image)
+
+
+        inside.refresh_data()
+        outside.refresh_data()
+
+
+        inside_name = inside.name[index % inside.size]
+        inside_value = inside.value[index % inside.size]
+        inside_unit = inside.unit[index % inside.size]
+        # this string should be rendered
+        inside_text = f"{inside_name}: {inside_value} {inside_unit}"
+        outside_name = outside.name[index % outside.size]
+        outside_value = outside.value[index % outside.size]
+        outside_unit = outside.unit[index % outside.size]
+        # this string should be rendered
+        outside_text = f"{outside_name}: {outside_value} {outside_unit}"
+        
+
+        draw.text((10, 60), inside_text, font=font, fill=(255, 255, 255))
+        draw.text((10, 180), outside_text, font=font, fill=(255, 255, 255))
+        
+        
+        # Must always be last
+        disp.display(image)
+        index = index + 1 if index < 1000 else 0
+        time.sleep(5)
 
 
 if __name__ == "__main__":
