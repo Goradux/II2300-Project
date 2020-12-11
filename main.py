@@ -64,8 +64,8 @@ def main():
         outside_text = f"{outside_name}: {outside_value} {outside_unit}"
         
 
-        draw.text((10, 60), inside_text, font=font, fill=(255, 255, 255))
-        draw.text((10, 180), outside_text, font=font, fill=(255, 255, 255))
+        draw.text((10, 60), inside_text, font=font, fill=(225, 225, 225))
+        draw.text((10, 180), outside_text, font=font, fill=(225, 225, 225))
         
         
         # Must always be last

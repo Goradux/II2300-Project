@@ -13,11 +13,14 @@ class Outside():
         "fields":"pm25,pm10,temp,humidity",
     }
 
+
     def __init__(self) -> None:
         self.name = ['PM2.5', 'PM10', 'temp.', 'humidity']
         self.value = []
-        self.unit = ['μg/m3', 'μg/m3' ,'C', '']
+        self.unit = ['μg/m3', 'μg/m3' ,'C', '%']
+        self.size = 4
         self.refresh_data()
+
 
     def refresh_data(self):
         try:
