@@ -26,7 +26,7 @@ class Inside():
         # self.pressure = {"name": "pressure", "value": self.sensor.data.pressure}
         self.value = [
             self.sensor.data.temperature,
-            self.sensor.data.gas_resistance,
+            round(self.sensor.data.gas_resistance),
             self.sensor.data.humidity,
             self.sensor.data.pressure
         ]

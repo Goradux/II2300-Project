@@ -69,12 +69,12 @@ def main():
         inside_value = inside.value[index % inside.size]
         inside_unit = inside.unit[index % inside.size]
         # this string should be rendered
-        inside_text = f"{inside_name}: {inside_value} {inside_unit}"
+        inside_text = f"{inside_name}:\n{inside_value} {inside_unit}"
         outside_name = outside.name[index % outside.size]
         outside_value = outside.value[index % outside.size]
         outside_unit = outside.unit[index % outside.size]
         # this string should be rendered
-        outside_text = f"{outside_name}: {outside_value} {outside_unit}"
+        outside_text = f"{outside_name}:\n{outside_value} {outside_unit}"
         
 
         inside_air_quality = iaq.calculate_air_quality_score(inside.value[2], inside.value[1])

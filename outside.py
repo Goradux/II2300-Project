@@ -10,14 +10,14 @@ class Outside():
         "lon": "17.951",
         "apikey": API_KEY,
         "unit_system":"si",
-        "fields":"pm25,pm10,temp,humidity",
+        "fields":"pm25,pm10,temp,humidity,epa_aqi",
     }
 
 
     def __init__(self) -> None:
-        self.name = ['PM2.5', 'PM10', 'temp.', 'humidity']
+        self.name = ['PM2.5', 'PM10', 'temp.', 'humidity', 'Air Quality Index']
         self.value = []
-        self.unit = ['μg/m3', 'μg/m3' ,'C', '%']
+        self.unit = ['μg/m3', 'μg/m3' ,'C', '%', '']
         self.size = 4
         self.refresh_data()
 
@@ -34,7 +34,8 @@ class Outside():
                 data['pm25']['value'],
                 data['pm10']['value'],
                 data['temp']['value'],
-                data['humidity']['value']
+                data['humidity']['value'],
+                data['epa_aqi']['value']
             ]
         except Exception as e:
             print(e)
