@@ -17,7 +17,7 @@ class Outside():
     def __init__(self) -> None:
         self.name = ['PM2.5', 'PM10', 'temp.', 'humidity', 'Air Quality Index']
         self.value = []
-        self.unit = ['μg/m3', 'μg/m3' ,'C', '%', '']
+        self.unit = ['microg/m3', 'microg/m3' ,'C', '%', '']
         self.size = 4
         self.refresh_data()
 
