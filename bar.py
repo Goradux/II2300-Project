@@ -30,9 +30,10 @@ class AQ_Bar():
 
         # top left is (0,0)
         x0 = 192                    # top left
-        y0 = round(230*value/100)   # top left
+        # y0 = round(230*value/100)   # top left
+        y0 = 230                      # top left
         x1 = 235                    # bottom right
-        y1 = 10                     # bottom right
+        y1 = round(240 - 220*value/100 - 10)    # bottom right
         rectangle_size = (x0, y0, x1, y1)
 
         color = self.__get_color(value)
