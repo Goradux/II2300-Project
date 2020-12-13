@@ -80,8 +80,8 @@ def main():
         inside_air_quality = iaq.calculate_air_quality_score(inside.value[2], inside.value[1])
 
 
-        draw.text((10, 60), inside_text, font=font, fill=(225, 225, 225))
-        draw.text((10, 180), outside_text, font=font, fill=(225, 225, 225))
+        draw.multiline_text((10, 60), inside_text, font=font, fill=(225, 225, 225))
+        draw.multiline_text((10, 180), outside_text, font=font, fill=(225, 225, 225))
         aq_bar.render(inside_air_quality)
 
 
