@@ -9,7 +9,7 @@ from inside import Inside
 from IAQ import IAQ
 from bar import AQ_Bar
 
-SLEEP = 5   # seconds
+SLEEP = 2   # seconds
 
 def main():
     print('Initializing.')

@@ -23,7 +23,7 @@ class IAQ():
         gas_upper_limit = 300000
         # gas_reference = 2500
         self.gases.append(gas)
-        if len(self.gases) > 10:
+        if len(self.gases) > 3:
             del self.gases[0]
         gas_reference = sum(self.gases) / len(self.gases)
         # self.total_gas += gas
