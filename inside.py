@@ -13,7 +13,7 @@ class Inside():
             exit(1)
         self.name = ['temp.', 'gas res.', 'humidity', 'pressure']
         self.value = []
-        self.unit = ['C', '???' ,'%', 'hPa']
+        self.unit = ['C', 'Ohm' ,'%', 'hPa']
         self.size = 4
         self.refresh_data()
 
