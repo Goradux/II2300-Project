@@ -77,7 +77,7 @@ def main():
         outside_text = f"{outside_name}: {outside_value} {outside_unit}"
         
 
-        inside_air_quality = iaq.calculate_air_quality_score(inside_value[2], inside_value[1])
+        inside_air_quality = iaq.calculate_air_quality_score(inside.value[2], inside.value[1])
 
 
         draw.text((10, 60), inside_text, font=font, fill=(225, 225, 225))
